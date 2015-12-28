@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Faett_Channel
+ *
+ * NOTICE OF LICENSE
+ * 
+ * Faett_Channel is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Faett_Channel is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Faett_Channel.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Faett_Channel to newer
+ * versions in the future. If you wish to customize Faett_Channel for your
+ * needs please refer to http://www.faett.net for more information.
+ *
+ * @category   Faett
+ * @package    Faett_Channel
+ * @copyright  Copyright (c) 2009 <tw@faett.net> Tim Wagner
+ * @license    <http://www.gnu.org/licenses/> 
+ * 			   GNU General Public License (GPL 3)
+ */
+-->
+<config>
+    <api>
+        <resources>
+            <!-- m translate="title" module="channel">
+	            <title>Maintainers</title>
+	            <model>channel/serializer_maintainer</model>
+	            <methods>
+	                <allmaintainers translate="title" module="channel">
+	                    <title>Load a list with all maintainers</title>
+	                    <acl>channel/m/allmaintainers</acl>
+	                </allmaintainers>
+	                <info translate="title" module="channel">
+	                    <title>Load the maintainer infos</title>
+	                    <acl>channel/m/info</acl>
+	                </info>
+	            </methods>
+            </m>
+            <p translate="title" module="channel">
+	            <title>Packages</title>
+	            <model>channel/serializer_package</model>
+	            <methods>
+	                <packages translate="title" module="channel">
+	                    <title>Load list with all packages</title>
+	                    <acl>channel/p/packages</acl>
+	                </packages>
+	                <info translate="title" module="channel">
+	                    <title>Load a list with the package info</title>
+	                    <acl>channel/p/info</acl>
+	                </info>
+	                <maintainers translate="title" module="channel">
+	                    <title>Load a list with the maintainers of the package</title>
+	                    <acl>channel/p/maintainers</acl>
+	                </maintainers>
+	            </methods>
+            </p>
+            <c translate="title" module="channel">
+	            <title>Categories</title>
+	            <model>channel/serializer_category</model>
+	            <methods>
+	                <categories translate="title" module="channel">
+	                    <title>Load a list with all categories</title>
+	                    <acl>channel/c/categories</acl>
+	                </categories>
+	                <info translate="title" module="channel">
+	                    <title>Load category infos</title>
+	                    <acl>channel/c/info</acl>
+	                </info>
+	                <packages translate="title" module="channel">
+	                    <title>Load a list with all packages</title>
+	                    <acl>channel/c/packages</acl>
+	                </packages>
+	                <packagesinfo translate="title" module="channel">
+	                    <title>Load detail package overview</title>
+	                    <acl>channel/c/packagesinfo</acl>
+	                </packagesinfo>
+	            </methods>
+            </c>
+            <r translate="title" module="channel">
+	            <title>Releases</title>
+	            <model>channel/serializer_release</model>
+	            <methods>
+	                <allreleases translate="title" module="channel">
+	                    <title>Load all releases of the package</title>
+	                    <acl>channel/r/allreleases</acl>
+	                </allreleases>
+	                <alpha translate="title" module="channel">
+	                    <title>Load the latest alpha release version number</title>
+	                    <acl>channel/r/alpha</acl>
+	                </alpha>
+	                <beta translate="title" module="channel">
+	                    <title>Load the latest beta release version number</title>
+	                    <acl>channel/r/beta</acl>
+	                </beta>
+	                <deps translate="title" module="channel">
+	                    <title>Load release dependencies</title>
+	                    <acl>channel/r/deps</acl>
+	                </deps>
+	                <devel translate="title" module="channel">
+	                    <title>Load the latest development release version number</title>
+	                    <acl>channel/r/devel</acl>
+	                </devel>
+	                <latest translate="title" module="channel">
+	                    <title>Load the latest version number</title>
+	                    <acl>channel/r/latest</acl>
+	                </latest>
+	                <package translate="title" module="channel">
+	                    <title>Load release package.xml</title>
+	                    <acl>channel/r/package</acl>
+	                </package>
+	                <stable translate="title" module="channel">
+	                    <title>Load latest stable release version number</title>
+	                    <acl>channel/r/stable</acl>
+	                </stable>
+	                <version translate="title" module="channel">
+	                    <title>Load release version infos</title>
+	                    <acl>channel/r/version</acl>
+	                </version>
+	            </methods>
+            </r>
+            <channel translate="title" module="channel">
+	            <title>Package API</title>
+	            <model>channel/package_api</model>
+	            <acl>channel/licence</acl>
+	            <methods>
+	                <info translate="title" module="channel">
+	                    <title>Retrieve package data</title>
+	            		<acl>channel/licence/info</acl>
+	                </info>
+	                <validate translate="title" module="channel">
+	                    <title>Validate Serialz</title>
+	            		<acl>channel/licence/validate</acl>
+	                </validate>
+	                <validateSimple translate="title" module="channel">
+	                    <title>Validate Serialz</title>
+	            		<acl>channel/licence/validateSimple</acl>
+	                </validateSimple>
+	            </methods>
+                <faults module="channel">
+                    <licence_invalid>
+                        <code>100</code>
+                        <message>Invalid licence. Details in error message.</message>
+                    </licence_invalid>
+				</faults>
+            </channel>
+			<test translate="title" module="channel">
+				<title>english channel ACLs</title>
+				<model>channel/channel</model>
+				<acl>channel/test</acl>
+			</test>
+			<test_commercial translate="title" module="channel">
+				<title>english channel ACLs</title>
+				<model>channel/channel</model>
+				<acl>channel/test</acl>
+				<methods>
+					<package_name translate="title" module="channel">
+						<title>Retrieve maintainer data</title>
+						<acl>channel/test/package_name</acl>
+					</package_name>
+				</methods>
+			</test_commercial -->
+        </resources>
+        <acl>
+            <resources>
+            	<channel translate="title" module="channel">
+                    <title>900.acl.title.channel</title>
+                    <sort_order>1</sort_order>
+		            <!-- m translate="title" module="channel">
+			            <title>900.acl.title.m-channel</title>
+		                <allmaintainers translate="title" module="channel">
+		                    <title>900.acl.title.m-allmaintainers</title>
+		                </allmaintainers>
+		                <info translate="title" module="channel">
+		                    <title>900.acl.title.m-info</title>
+		                </info>
+		            </m>
+		            <c translate="title" module="channel">
+			            <title>900.acl.title.c-channel</title>
+		                <categories translate="title" module="channel">
+		                    <title>900.acl.title.c-categories</title>
+		                </categories>
+		                <info translate="title" module="channel">
+		                    <title>900.acl.title.c-info</title>
+		                </info>
+		                <packages translate="title" module="channel">
+		                    <title>900.acl.title.c-packages</title>
+		                </packages>
+		                <packagesinfo translate="title" module="channel">
+		                    <title>900.acl.title.c-packagesinfo</title>
+		                </packagesinfo>
+		            </c>
+		            <p translate="title" module="channel">
+		                <title>900.acl.title.p-channel</title>
+		                <packages translate="title" module="channel">
+		                    <title>900.acl.title.p-packages</title>
+		                </packages>
+		                <info translate="title" module="channel">
+		                    <title>900.acl.title.p-info</title>
+		                </info>
+		                <maintainers translate="title" module="channel">
+		                    <title>900.acl.title.p-maintainers</title>
+		                </maintainers>
+		            </p>
+		            <r translate="title" module="channel">
+			            <title>900.acl.title.r-channel</title>
+		                <allreleases translate="title" module="channel">
+		                    <title>900.acl.title.r-allreleases</title>
+		                </allreleases>
+		                <alpha translate="title" module="channel">
+		                    <title>900.acl.title.r-alpha</title>
+		                </alpha>
+		                <beta translate="title" module="channel">
+		                    <title>900.acl.title.r-beta</title>
+		                </beta>
+		                <deps translate="title" module="channel">
+		                    <title>900.acl.title.r-deps</title>
+		                </deps>
+		                <devel translate="title" module="channel">
+		                    <title>900.acl.title.r-devel</title>
+		                </devel>
+		                <latest translate="title" module="channel">
+		                    <title>900.acl.title.r-latest</title>
+		                    <acl>r/latest</acl>
+		                </latest>
+		                <package translate="title" module="channel">
+		                    <title>900.acl.title.r-package</title>
+		                </package>
+		                <stable translate="title" module="channel">
+		                    <title>900.acl.title.r-stable</title>
+		                </stable>
+		                <version translate="title" module="channel">
+		                    <title>900.acl.title.r-version</title>
+		                </version>
+		            </r>
+	            	<licence translate="title" module="channel">
+		                <title>Webservice</title>
+		                <info translate="title" module="channel">
+		                    <title>Paketdaten abfragen</title>
+		                </info>
+		                <validate translate="title" module="channel">
+		                    <title>Validate Serialz</title>
+		                </validate>
+		                <validateSimple translate="title" module="channel">
+		                    <title>Simple validate Serialz</title>
+		                </validateSimple>
+		            </licence>
+					<test translate="title" module="channel">
+						<title>Test</title>
+					</test>
+					<test_commercial translate="title" module="channel">
+						<title>Test</title>	
+						<package_name translate="title" module="channel">
+							<title>Faett_Channel</title>
+						</package_name>
+					</test_commercial -->
+	            </channel>
+            </resources>
+        </acl>
+    </api>
+</config>

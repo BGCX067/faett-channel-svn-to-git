@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_Eng7cBmiEd-ZwN-hyETFfw">
+  <elementImport xmi:id="_EoMQ4BmiEd-ZwN-hyETFfw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_EoMQ4RmiEd-ZwN-hyETFfw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_EoMQ4hmiEd-ZwN-hyETFfw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_EoMQ4xmiEd-ZwN-hyETFfw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_GydJABmiEd-ZwN-hyETFfw" name="List_Packages">
+    <region xmi:id="_GytnsBmiEd-ZwN-hyETFfw" name="Region">
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_jZdlsBmiEd-ZwN-hyETFfw" kind="choice"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WjBpUBmjEd-ZwN-hyETFfw" name="Authenticated"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_gRRQQBmjEd-ZwN-hyETFfw" kind="terminate"/>
+      <subvertex xmi:type="uml:State" xmi:id="_nz5UMBmjEd-ZwN-hyETFfw" name="Autorized"/>
+      <subvertex xmi:type="uml:State" xmi:id="__jZ2cBmjEd-ZwN-hyETFfw" name="Categories loaded"/>
+      <subvertex xmi:type="uml:State" xmi:id="_Dx6eQBmkEd-ZwN-hyETFfw" name="Categories serialized"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_6sq7kBmkEd-ZwN-hyETFfw" kind="choice"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_q41Z8BmlEd-ZwN-hyETFfw" kind="choice"/>
+      <transition xmi:id="_r_oxUBmiEd-ZwN-hyETFfw" name="no" source="_jZdlsBmiEd-ZwN-hyETFfw" target="_gRRQQBmjEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_PCt5kBmjEd-ZwN-hyETFfw" source="_JCOzQBmiEd-ZwN-hyETFfw" target="_WjBpUBmjEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_cTDuQBmjEd-ZwN-hyETFfw" source="_WjBpUBmjEd-ZwN-hyETFfw" target="_jZdlsBmiEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_2yZT0BmjEd-ZwN-hyETFfw" source="_jZdlsBmiEd-ZwN-hyETFfw" target="_nz5UMBmjEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_IxcTUBmkEd-ZwN-hyETFfw" source="__jZ2cBmjEd-ZwN-hyETFfw" target="_q41Z8BmlEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_Jx0yQBmkEd-ZwN-hyETFfw" source="_nz5UMBmjEd-ZwN-hyETFfw" target="_6sq7kBmkEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_X9bVUBmkEd-ZwN-hyETFfw" source="_Dx6eQBmkEd-ZwN-hyETFfw" target="_JOdRYBmiEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_FFqIoBmlEd-ZwN-hyETFfw" source="_6sq7kBmkEd-ZwN-hyETFfw" target="_gRRQQBmjEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_T1VpIBmlEd-ZwN-hyETFfw" source="_6sq7kBmkEd-ZwN-hyETFfw" target="__jZ2cBmjEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_v27roBmlEd-ZwN-hyETFfw" source="_q41Z8BmlEd-ZwN-hyETFfw" target="_Dx6eQBmkEd-ZwN-hyETFfw"/>
+      <transition xmi:id="_xdA4oBmlEd-ZwN-hyETFfw" source="_q41Z8BmlEd-ZwN-hyETFfw" target="_gRRQQBmjEd-ZwN-hyETFfw"/>
+    </region>
+    <connectionPoint xmi:id="_JCOzQBmiEd-ZwN-hyETFfw" name="Entry Point" kind="entryPoint"/>
+    <connectionPoint xmi:id="_JOdRYBmiEd-ZwN-hyETFfw" name="Exit Point" kind="exitPoint"/>
+  </packagedElement>
+</uml:Package>

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.7.1" version="2.0"
+	xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+	<name>${ant.project.name}</name>
+	<channel>www.faett.net</channel>
+	<summary>Magento Module providing PEAR channel server functionality</summary>
+	<description>
+		This extension provides PEAR channel server functionality by implementing
+		the REST interfaces version 1.2 of the PEAR channel server specification.
+	</description>
+	<lead>
+		<name>Tim Wagner</name>
+		<user>wagner_tim78</user>
+		<email>wagner_tim78@hotmail.com</email>
+		<active>yes</active>
+	</lead>
+	<date>${actual.date}</date>
+	<time>${actual.time}</time>
+	<version>
+		<release>${version}</release>
+		<api>${api.version}</api>
+	</version>
+	<stability>
+		<release>${release.stability}</release>
+		<api>${api.stability}</api>
+	</stability>
+	<license uri="http://www.gnu.org/licenses/gpl-3.0.txt">OSL 3.0</license>
+	<notes>
+		- Bugfixing invalid bulk email functionality
+	</notes>
+	<contents/>
+	<dependencies>
+		<required>
+			<php>
+				<min>5.2.0</min>
+				<max>6.0</max>
+			</php>
+			<pearinstaller>
+				<min>1.6.2</min>
+			</pearinstaller>
+			<package>
+				<name>Faett_Package</name>
+				<channel>www.faett.net</channel>
+				<min>0.1.20</min>
+			</package>
+		</required>
+	</dependencies>
+	<phprelease />
+	<changelog>
+		<release>
+			<version>
+				<release>${version}</release>
+				<api>${api.version}</api>
+			</version>
+			<stability>
+				<release>${release.stability}</release>
+				<api>${api.stability}</api>
+			</stability>
+			<date>${actual.date}</date>
+			<license uri="http://www.gnu.org/licenses/gpl-3.0.txt">OSL 3.0</license>
+			<notes>
+				- Bugfixing invalid bulk email functionality
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.20</release>
+				<api>0.1.1</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-27</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Removing log messages for beta tests
+				- Adding validation request log with requester's IP address
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.19</release>
+				<api>0.1.1</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-27</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Switching to Google Code for Project Hosting
+				- Switching from OSL 3.0 to GPL 3
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.18</release>
+				<api>0.1.1</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-20</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Adding new, default subscription type 'Endless'
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.17</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-20</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Refactoring email template handling
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.16</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-20</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Adding german email translation
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.15</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-19</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Bugfixing missing method call when creating a new package
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.14</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-10</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Adding licence management support
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.13</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-03-10</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Bugfixing invalid rewrite for channel.xml
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.12</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-03-09</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Bugfixing invald creation of channel.xml
+				- Implementing store based channel configuration
+				- Creating necessary store base URL rewrites necessary for channel.xml
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.11</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-03-07</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Bugfixing exception when authentication is switched off
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.10</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-03-05</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Bugfixing invalid rendering of ressource /c/category/packagesinfo.xml
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.9</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-03-04</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Bugfixing invalid dependencies to td/Faett_Core and td/Faett_Package
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.8</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-03-03</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Bugfixing invalid class name.
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.7</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-03-01</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Switching to new channel
+				- Removing specialized licence management
+				- Refactoring package collection in Serializers for making it more generic
+				- Adding ACL's
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.6</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-02-23</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Adding functionality to provide separate download links for maintainers and customers
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.5</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-02-23</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Refactoring /r/package_name/version.xml file to use values from package.xml instead of user input from admin
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.4</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-02-22</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Changing release sortings in Serializers
+				- Bugfixing undeclard variable $id in Category::loadByValue($value)
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.3</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-02-22</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Refactoring ressource content delivery function in Faett_Channel_IndexController::_sendUploadResponse($content, $contentType='application/xml')
+				- Bugfixing Version und Package Serializers
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.2</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-02-20</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Bugfixing and switching to new channel
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.1</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2009-12-28</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Implementing Serializers for XML and Text representations of ressources
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.0</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2009-12-28</date>
+			<license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+			<notes>
+				- Initial release
+			</notes>
+		</release>
+	</changelog>
+</package>

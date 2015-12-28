@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Faett_Channel
+ *
+ * NOTICE OF LICENSE
+ * 
+ * Faett_Channel is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Faett_Channel is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Faett_Channel.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Faett_Channel to newer
+ * versions in the future. If you wish to customize Faett_Channel for your
+ * needs please refer to http://www.faett.net for more information.
+ *
+ * @category   Faett
+ * @package    Faett_Channel
+ * @copyright  Copyright (c) 2009 <tw@faett.net> Tim Wagner
+ * @license    <http://www.gnu.org/licenses/> 
+ * 			   GNU General Public License (GPL 3)
+ */
+-->
+<config>
+    <modules>
+        <Faett_Channel>
+            <version>${version}</version>
+        </Faett_Channel>
+    </modules>
+    <frontend>
+        <routers>
+            <channel>
+                <use>standard</use>
+                <args>
+                    <module>Faett_Channel</module>
+                    <frontName>channel</frontName>
+                </args>
+            </channel>
+        </routers>
+        <layout>
+            <updates>
+                <channel>
+                    <file>channel.xml</file>
+                </channel>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Faett_Channel>
+                    <files>
+                        <default>Faett_Channel.csv</default>
+                    </files>
+                </Faett_Channel>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+		<layout>
+			<updates>
+				<channel>
+					<file>channel.xml</file>
+				</channel>
+			</updates>
+		</layout>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <channel translate="title" module="channel">
+                                            <title>FAETT</title>
+                                            <sort_order>50</sort_order>
+                                        </channel>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <Faett_Channel>
+                    <files>
+                        <default>Faett_Channel.csv</default>
+                    </files>
+                </Faett_Channel>
+            </modules>
+        </translate>
+    </adminhtml> 
+    <global>
+        <models>
+            <channel>
+                <class>Faett_Channel_Model</class>
+                <resourceModel>channel_mysql4</resourceModel>
+            </channel>
+            <channel_mysql4>
+            	<class>Faett_Channel_Model_Mysql4</class>
+                <entities>
+                    <link_update>
+                        <table>channel_link_update</table>
+                    </link_update>
+                    <subscription_type>
+                        <table>channel_subscription_type</table>
+                    </subscription_type>
+                    <subscription_type_option>
+                        <table>channel_subscription_type_option</table>
+                    </subscription_type_option>
+                    <validation_request>
+                        <table>channel_validation_request</table>
+                    </validation_request>
+                </entities>
+            </channel_mysql4>
+            <package_mysql4>
+                <rewrite>
+                    <link>Faett_Channel_Model_Mysql4_Link</link>
+                </rewrite>
+            </package_mysql4>        
+            <catalog>
+                <rewrite>
+                    <product>Faett_Channel_Model_Package</product>
+                </rewrite>
+            </catalog>
+            <api>
+                <rewrite>
+                    <session>Faett_Channel_Model_Session</session>
+                </rewrite>
+            </api>    
+            <api>
+                <rewrite>
+                    <user>Faett_Channel_Model_Maintainer</user>
+                </rewrite>
+            </api> 
+            <customer>
+                <rewrite>
+                    <customer>Faett_Channel_Model_Customer</customer>
+                </rewrite>
+            </customer>
+            <package>
+            	<rewrite>
+            		<serialz>Faett_Channel_Model_Serialz</serialz>
+            	</rewrite>
+            </package>        
+            <api_mysql4>
+                <rewrite>
+                    <user>Faett_Channel_Model_Mysql4_Maintainer</user>
+                </rewrite>
+            </api_mysql4>
+        </models>
+        <resources>
+            <channel_setup>
+                <setup>
+                    <module>Faett_Channel</module>
+                    <class>Faett_Channel_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </channel_setup>
+            <channel_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </channel_write>
+            <channel_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </channel_read>
+        </resources>
+        <blocks>
+            <channel>
+                <class>Faett_Channel_Block</class>
+            </channel>
+            <adminhtml>
+            	<rewrite>
+            		<catalog_product_edit_tab_options>Faett_Channel_Block_Adminhtml_Catalog_Product_Edit_Tab_Options</catalog_product_edit_tab_options>
+            	</rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <channel>
+                <class>Faett_Channel_Helper</class>
+            </channel>
+            <core>
+            	<encryption_model>Faett_Channel_Model_Encryption</encryption_model>
+            </core>
+        </helpers>
+        <template>
+            <email>
+                <channel_emails_release_new translate="label" module="channel">
+                    <label>New release</label>
+                    <file>release_new.html</file>
+                    <type>html</type>
+                </channel_emails_release_new>
+            </email>
+        </template>
+    </global>
+	<crontab>
+        <jobs>
+            <mail_service>
+                <schedule>
+                	<cron_expr>*/1 * * * *</cron_expr>
+                </schedule>
+                <run>
+                	<model>channel/service::mail</model>
+                </run>
+            </mail_service>
+        </jobs>
+    </crontab>
+</config>

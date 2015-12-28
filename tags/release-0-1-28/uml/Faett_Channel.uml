@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_n_pQQBjqEd-Q-Md8n3-rGw" name="Faett_Channel">
+  <elementImport xmi:id="_oAHxYBjqEd-Q-Md8n3-rGw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_oAHxYRjqEd-Q-Md8n3-rGw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_oAHxYhjqEd-Q-Md8n3-rGw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_oAHxYxjqEd-Q-Md8n3-rGw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Component" xmi:id="_pDpq8BjqEd-Q-Md8n3-rGw" name="Channel" useCase="_r2EIMBjqEd-Q-Md8n3-rGw _s5-cQBjqEd-Q-Md8n3-rGw _t6kWkBjqEd-Q-Md8n3-rGw _xPbZkBjqEd-Q-Md8n3-rGw">
+    <ownedUseCase xmi:id="_r2EIMBjqEd-Q-Md8n3-rGw" name="Authentification" subject="_pDpq8BjqEd-Q-Md8n3-rGw"/>
+    <ownedUseCase xmi:id="_s5-cQBjqEd-Q-Md8n3-rGw" name="List Packages" subject="_pDpq8BjqEd-Q-Md8n3-rGw">
+      <include xmi:id="_0O73oBjqEd-Q-Md8n3-rGw" addition="_r2EIMBjqEd-Q-Md8n3-rGw"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_t6kWkBjqEd-Q-Md8n3-rGw" name="Load Package Information" subject="_pDpq8BjqEd-Q-Md8n3-rGw">
+      <include xmi:id="_0pK8kBjqEd-Q-Md8n3-rGw" addition="_r2EIMBjqEd-Q-Md8n3-rGw"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_xPbZkBjqEd-Q-Md8n3-rGw" name="Install Package" subject="_pDpq8BjqEd-Q-Md8n3-rGw">
+      <include xmi:id="_1IO3IBjqEd-Q-Md8n3-rGw" addition="_r2EIMBjqEd-Q-Md8n3-rGw"/>
+    </ownedUseCase>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_q-RkkBjqEd-Q-Md8n3-rGw" name="Customer"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_6c4AkBjqEd-Q-Md8n3-rGw" memberEnd="_6c4AkRjqEd-Q-Md8n3-rGw _6c4AlBjqEd-Q-Md8n3-rGw" navigableOwnedEnd="_6c4AlBjqEd-Q-Md8n3-rGw">
+    <ownedEnd xmi:id="_6c4AkRjqEd-Q-Md8n3-rGw" name="src" type="_q-RkkBjqEd-Q-Md8n3-rGw" association="_6c4AkBjqEd-Q-Md8n3-rGw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6c4AkxjqEd-Q-Md8n3-rGw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6c4AkhjqEd-Q-Md8n3-rGw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_6c4AlBjqEd-Q-Md8n3-rGw" name="Request Package List" type="_s5-cQBjqEd-Q-Md8n3-rGw" association="_6c4AkBjqEd-Q-Md8n3-rGw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6c4noRjqEd-Q-Md8n3-rGw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6c4noBjqEd-Q-Md8n3-rGw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_8HtKsBjqEd-Q-Md8n3-rGw" memberEnd="_8HtxwBjqEd-Q-Md8n3-rGw _8HtxwxjqEd-Q-Md8n3-rGw" navigableOwnedEnd="_8HtxwxjqEd-Q-Md8n3-rGw">
+    <ownedEnd xmi:id="_8HtxwBjqEd-Q-Md8n3-rGw" name="src" type="_q-RkkBjqEd-Q-Md8n3-rGw" association="_8HtKsBjqEd-Q-Md8n3-rGw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8HtxwhjqEd-Q-Md8n3-rGw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8HtxwRjqEd-Q-Md8n3-rGw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_8HtxwxjqEd-Q-Md8n3-rGw" name="Request Package Information" type="_t6kWkBjqEd-Q-Md8n3-rGw" association="_8HtKsBjqEd-Q-Md8n3-rGw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8HtxxRjqEd-Q-Md8n3-rGw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8HtxxBjqEd-Q-Md8n3-rGw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_AheAQBjrEd-Q-Md8n3-rGw" memberEnd="_AheAQRjrEd-Q-Md8n3-rGw _AhenUBjrEd-Q-Md8n3-rGw" navigableOwnedEnd="_AhenUBjrEd-Q-Md8n3-rGw">
+    <ownedEnd xmi:id="_AheAQRjrEd-Q-Md8n3-rGw" name="src" type="_q-RkkBjqEd-Q-Md8n3-rGw" association="_AheAQBjrEd-Q-Md8n3-rGw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AheAQxjrEd-Q-Md8n3-rGw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AheAQhjrEd-Q-Md8n3-rGw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AhenUBjrEd-Q-Md8n3-rGw" name="Install Package" type="_xPbZkBjqEd-Q-Md8n3-rGw" association="_AheAQBjrEd-Q-Md8n3-rGw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AhenUhjrEd-Q-Md8n3-rGw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AhenURjrEd-Q-Md8n3-rGw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Package>

@@ -1,0 +1,66 @@
+<?php
+/**
+ * Faett_Channel
+ *
+ * NOTICE OF LICENSE
+ * 
+ * Faett_Channel is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Faett_Channel is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Faett_Channel.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Faett_Channel to newer
+ * versions in the future. If you wish to customize Faett_Channel for your
+ * needs please refer to http://www.faett.net for more information.
+ *
+ * @category   Faett
+ * @package    Faett_Channel
+ * @copyright  Copyright (c) 2009 <tw@faett.net> Tim Wagner
+ * @license    <http://www.gnu.org/licenses/> 
+ * 			   GNU General Public License (GPL 3)
+ */
+?>
+<div class="entry-edit custom-options product-custom-options">
+    <div id="dynamic-price-warrning" style="display:none">
+        <ul class="messages">
+            <li class="error-msg">
+                <ul>
+                    <li><?php echo $this->__('Bundle with dynamic pricing cannot include custom defined options. Options will not be saved.') ?></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('catalog')->__('Custom Options') ?></h4>
+        <div class="right">
+        	<?php echo $this->getInitButtonHtml() ?>
+        	<?php echo $this->getAddButtonHtml() ?>
+        </div>
+    </div>
+
+    <div id="product_options_container" class="box">
+        <div id="product_options_container_top"></div>
+        <?php echo $this->getOptionsBoxHtml() ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+// re-bind form elements onchange
+varienWindowOnload(true);
+//show error message
+if ($('price_type')) {
+    if ($('price_type').value == '0' && $('dynamic-price-warrning')) {
+        $('dynamic-price-warrning').show();
+    }
+}
+</script>

@@ -1,0 +1,503 @@
+<?xml version="1.0"?>
+<project name="Faett_Channel" default="deploy" basedir=".">
+	<property file="${basedir}/build.properties"/>
+	<property file="${basedir}/build.default.properties"/>
+	<property environment="env" />
+	<property name="namespace" value="Faett" />
+	<property name="module" value="Channel"/>
+	<property name="unique.name" value="${namespace}/${module}" />
+	<property name="pear.dir" value="${basedir}/pear" />
+	<property name="php-src.dir" value="${basedir}/src" />
+	<property name="php-test.dir" value="${basedir}/tests" />
+	<property name="tmp.dir" value="${basedir}/tmp" />
+	<property name="magento-src.dir" value="${basedir}/magento-src" />
+	<property name="php-test.dir" value="${basedir}/tests" />
+	<property name="php-target.dir" value="${basedir}/target"/>
+	<!-- ==================================================================== -->
+	<!-- Cleans the directories with the generated source files				  -->
+	<!-- ==================================================================== -->
+	<target name="clean" description="Cleans almost everything, so use carefully.">
+		<delete dir="${php-target.dir}" includeemptydirs="true" quiet="false" verbose="true" failonerror="true"/>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Prepares all the required directories								  -->
+	<!-- ==================================================================== -->
+	<target name="prepare" depends="clean" description="Prepares all the required directories.">
+		<mkdir dir="${php-target.dir}" />
+		<mkdir dir="${php-target.dir}/reports" />
+		<mkdir dir="${php-target.dir}/reports/coverage" />
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Copies the sources to the target directory							  -->
+	<!-- ==================================================================== -->
+	<target name="copy" depends="prepare" description="Copies the sources to the target directory.">
+		<copy
+			tofile="${php-target.dir}/${unique.name}/app/code/local/${unique.name}/etc/config.xml"
+			file="${php-src.dir}/app/code/local/${unique.name}/etc/config.xml">
+			<filterchain>
+				<expandproperties/>
+			</filterchain>
+		</copy>
+		<copy todir="${php-target.dir}/${unique.name}">
+			<fileset dir="${php-src.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Copies the sources to the deploy directory     					  -->
+	<!-- ==================================================================== -->
+	<target name="deploy" depends="copy" description="Copies the sources to the deploy directory.">		
+		<copy todir="${deploy.dir}">
+			<fileset dir="${php-target.dir}/${unique.name}">
+				<include name="**"/>
+			</fileset>
+		</copy>
+	</target>
+    <!-- ==================================================================== -->
+    <!-- Prepares the PEAR channel in the target directory, necessary for the -->
+    <!-- packages this project is related                   				  -->
+    <!-- ==================================================================== -->
+    <target name="prepare-pear" depends="copy" description="Prepares the PEAR channel in the target directory, necessary for the packages this project is related.">
+        <!-- initialize the PEAR directory -->
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="config-create" />
+            <arg value="${php-target.dir}/" />
+            <arg value=".pearrc" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="config-set" />
+            <arg value="data_dir" />
+            <arg value="pear/php/data" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="config-set" />
+            <arg value="preferred_state" />
+            <arg value="alpha" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="PEAR" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="Crypt_Blowfish-1.1.0RC2" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="channel-update" />
+            <arg value="pear.php.net" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="channel-discover" />
+            <arg value="connect.techdivision.com" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="techdivision/PEAR_Command" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="techdivision/PEAR_Installer_Role" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="techdivision/TechDivision_AOP" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="techdivision/TechDivision_XHProfPHPUnit" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="techdivision/Mage" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="techdivision/Mage_Core" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="techdivision/Mage_Catalog" />
+        </exec>
+        <exec dir="${php-target.dir}" executable="${bin.dir}/pear">
+            <arg value="-c" />
+            <arg value=".pearrc" />
+            <arg value="install" />
+            <arg value="techdivision/Zend" />
+        </exec>
+    </target>
+	<!-- ==================================================================== -->
+	<!-- Copies the package definition file to the target directory and		  -->
+	<!-- completes the contents node in package2.xml						  -->
+	<!-- ==================================================================== -->
+	<target name="pre-package" depends="prepare-pear" description="Copies the package definition file to the target directory.">
+		<tstamp>  
+		 	<format property="actual.date" pattern="yyyy-MM-dd" locale="en" />  
+		</tstamp>
+		<tstamp>  
+		 	<format property="actual.time" pattern="hh:mm:ss" locale="en" />  
+		</tstamp>
+		<exec executable="${php-target.dir}/pear/pear">
+			<arg line="generate-contents -T ${pear.dir}/package2.xml -S ${php-target.dir}/${unique.name} -D ${php-target.dir} -M ${unique.name}"/>
+		</exec>
+        <copy tofile="${php-target.dir}/${unique.name}/package2.xml" file="${php-target.dir}/package2.xml">
+        	<filterchain>
+				<expandproperties/>
+			</filterchain>
+		</copy>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Copies the package definition file to the target directory and		  -->
+	<!-- completes the contents node in package.xml	(4 magento connect)		  -->
+	<!-- ==================================================================== -->
+	<target name="pre-package-magento-connect" depends="prepare-pear" description="Copies the package definition file to the target directory.">
+		<tstamp>  
+		 	<format property="actual.date" pattern="yyyy-MM-dd" locale="en" />  
+		</tstamp>
+		<tstamp>  
+		 	<format property="actual.time" pattern="hh:mm:ss" locale="en" />  
+		</tstamp>
+		<exec dir="${php-target.dir}/pear" executable="pear">
+			<arg line="generate-contents -T ${pear.dir}/package2.xml -S ${php-target.dir}/${unique.name} -D ${php-target.dir} -M ${unique.name}"/>
+		</exec>
+		<property name="pear.channel-defined" value="connect.magentocommerce.com/community"/>
+        <copy tofile="${php-target.dir}/${unique.name}/package.xml" file="${php-target.dir}/package2.xml">
+        	<filterchain>
+				<expandproperties/>
+			</filterchain>
+		</copy>
+	</target>
+	<!-- ==================================================================== -->
+    <!-- Generates the PEAR package (4 magento-connect)                       -->
+    <!-- ==================================================================== -->
+    <target name="create-package-magento-connect" depends="pre-package-magento-connect" description="Generates the PEAR package.">
+        <exec dir="${php-target.dir}/${unique.name}" command="${php-target.dir}/pear/pear mage-package package.xml"/>
+    </target>
+    <!-- ==================================================================== -->
+    <!-- Generates the PEAR package                                           -->
+    <!-- ==================================================================== -->
+    <target name="create-package" depends="pre-package" description="Generates the PEAR package.">
+        <exec dir="${php-target.dir}/${unique.name}" command="${php-target.dir}/pear/pear mage-package package2.xml"/>
+    </target>
+	<!-- ==================================================================== -->
+	<!-- Generates the API documentation									  -->
+	<!-- ==================================================================== -->	
+	<target name="apidoc" depends="prepare-pear" description="Generates the API documentation.">
+		 <exec executable="${bin.dir}/phpdoc" dir="${php-target.dir}/${unique.name}">  
+		 	<arg line="-ct type -ue on -s on -t ${php-target.dir}/docs -o HTML:frames:earthli -d ${php-src.dir}"/>  
+		 </exec>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Runs the code sniffer and generates a report						  -->
+	<!-- ==================================================================== -->
+	<target name="sniffer" depends="apidoc" description="Runs the code sniffer and generates a report.">
+		<exec command="${bin.dir}/phpcs --standard=ZEND --report=checkstyle --report-file=${php-target.dir}/reports/checkstyle.xml ${php-src.dir} "/>
+	</target>
+    <!-- ==================================================================== -->
+    <!-- Runs the PHPDepend tool and generats a graphs                        -->
+    <!-- ==================================================================== -->
+    <target name="pdepend" depends="sniffer" description="Runs the PHPDepend tool and generats a graphs.">
+        <exec command="${bin.dir}/pdepend" dir="${php-src.dir}" failonerror="true">
+            <arg line="--summary-xml=${basedir}/target/reports/pdepend.xml --jdepend-chart=${basedir}/target/reports/pdepend.svg --overview-pyramid=${basedir}/target/reports/pdepend-pyramid.svg ." />
+        </exec>
+        <xslt style="/usr/share/ant/etc/jdepend.xsl" in="${php-target.dir}/reports/pdepend.xml" out="${php-target.dir}/reports/pdepend.html" />
+    </target>
+	<!-- ==================================================================== -->
+	<!-- Copies the test sources to the target directory					  -->
+	<!-- ==================================================================== -->
+	<target name="copy-tests" depends="pdepend" description="Copies the test sources to the target directory.">
+		<copy todir="${php-target.dir}/${unique.name}">
+			<fileset dir="${php-test.dir}">
+				<include name="**/*" />
+			</fileset>
+			<filterchain>
+				<expandproperties/>
+			</filterchain>
+		</copy>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Runs the PHPUnit tests and generates a report						  -->
+	<!-- ==================================================================== -->
+	<target name="run-tests" depends="copy-tests" description="Runs the PHPUnit tests and generates a report.">
+		<exec dir="${php-target.dir}" command="${bin.dir}/phpunit --log-xml ${php-target.dir}/reports/phpunit.xml --log-pmd ${php-target.dir}/reports/phpunit.pmd.xml --coverage-clover ${php-target.dir}/reports/coverage/clover.xml --coverage-html ${php-target.dir}/reports/coverage/ ${unique.name}/app/code/local/TechDivision/RitterSportTheme/AllTests"/>
+		<xslt style="phpunit-to-hudson.xsl" in="${php-target.dir}/reports/phpunit.xml" out="${php-target.dir}/reports/phpunit.hudson.xml"/>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Runs the PHPUnit tests and generates a report						  -->
+	<!-- ==================================================================== -->
+	<target name="build" depends="run-tests" description="Runs the PHPUnit tests and generates a report.">
+		<!-- add Hudson build here -->
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Extracts the Magento sources to the magento-src directory			  -->
+	<!-- ==================================================================== -->
+	<target name="init" description="Extracts the Magento sources to the magento-src directory.">
+		<delete dir="${magento-src.dir}" includeemptydirs="true" quiet="false" verbose="true" failonerror="true"/>
+		<mkdir dir="${magento-src.dir}"/>
+		<antcall target="get-magento-src" />
+		<untar compression="gzip" src="/tmp/magento-${magento.type}-${magento.version}.tar.gz" dest="${basedir}" />
+		<move todir="${magento-src.dir}">
+			<fileset dir="${basedir}/magento"/>
+		</move>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Initializing a magento instance with sample data for testing puropse -->
+	<!-- ==================================================================== -->
+	<target name="init-instance-with-sample-data" description="Creats a magento instance with sample data for testing purpose">
+		<echo message="Preparing magento ${magento.type} source with sample data..."/>
+		<antcall target="get-magento-src" />
+		<antcall target="get-magento-sample-data" />
+		<delete dir="${basedir}/instance-src" includeemptydirs="true" quiet="false" verbose="false" failonerror="true"/>
+		<delete dir="${instance.dir}" includeemptydirs="true" quiet="false" verbose="false" failonerror="true"/>
+		<exec dir="${instance.tmp.dir}" executable="${bin.dir}/tar">
+			<arg line="xzf"/>
+			<arg line="${instance.tmp.dir}/magento-${magento.type}-sample-data-${magento.sample-data.version}.tar.gz"/>
+		</exec>
+		<exec dir="${instance.tmp.dir}" executable="${bin.dir}/tar">
+			<arg line="xzf"/>
+			<arg line="${instance.tmp.dir}/magento-${magento.type}-${magento.version}.tar.gz"/>
+		</exec>
+		<move todir="${instance.dir}">
+			<fileset dir="${instance.tmp.dir}/magento"/>
+		</move>
+		<move todir="${instance.dir}/media">
+			<fileset dir="${instance.tmp.dir}/magento-${magento.type}-sample-data-${magento.sample-data.version}/media"/>
+		</move>
+		<move todir="${instance.dir}/privatesales" failonerror="false">
+			<fileset dir="${instance.tmp.dir}/magento-${magento.type}-sample-data-${magento.sample-data.version}/privatesales"/>
+		</move>
+		<move todir="${instance.dir}/staging" failonerror="false">
+			<fileset dir="${instance.tmp.dir}/magento-${magento.type}-sample-data-${magento.sample-data.version}/staging"/>
+		</move>
+		<echo message="Initialize database ${mysql.database}..." />
+		<exec executable="${mysql.bin}">
+			<arg line="-u${mysql.username}"/>
+			<arg line="-p${mysql.password}"/>
+			<arg line="-e'DROP DATABASE IF EXISTS ${mysql.database};create database ${mysql.database}'"/>
+		</exec>
+		<echo message="Installing sample SQL in Database ${mysql.database}..." />
+		<exec executable="/bin/sh">
+		  <arg line='-c "${mysql.bin} --default-character-set=utf8 -u${mysql.username} -p${mysql.password} ${mysql.database} &lt; ${instance.tmp.dir}/magento-${magento.type}-sample-data-${magento.sample-data.version}/magento-${magento.type}-sample-data-${magento.sample-data.version}.sql"' />
+		</exec>
+		<antcall target="finalize-instance-installation"/>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Initializing a magento instance for testing purpose   			 	  -->
+	<!-- ==================================================================== -->
+	<target name="init-instance" description="Creats a magento instance for testing purpose">
+		<echo message="Preparing magento ${magento.type} source with sample data..."/>
+		<antcall target="get-magento-src" />
+		<delete dir="${basedir}/instance-src" includeemptydirs="true" quiet="false" verbose="false" failonerror="true"/>
+		<delete dir="${instance.dir}" includeemptydirs="true" quiet="false" verbose="false" failonerror="true"/>
+		<exec dir="${instance.tmp.dir}" executable="${bin.dir}/tar">
+			<arg line="xvzf"/>
+			<arg line="${instance.tmp.dir}/magento-${magento.type}-${magento.version}.tar.gz"/>
+		</exec>
+		<move todir="${instance.dir}">
+			<fileset dir="${instance.tmp.dir}/magento"/>
+		</move>
+		<echo message="Initialize database ${mysql.database}..." />
+		<exec executable="${mysql.bin}">
+			<arg line="-h${mysql.host}"/>
+			<arg line="-u${mysql.username}"/>
+			<arg line="-p${mysql.password}"/>
+			<arg line="-e'DROP DATABASE IF EXISTS ${mysql.database};create database ${mysql.database}'"/>
+		</exec>
+		<antcall target="finalize-instance-installation"/>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Finalize installation of magento instance			   			 	  -->
+	<!-- ==================================================================== -->
+	<target name="finalize-instance-installation">
+		<echo message="Installing instance ${instance.url}..." />
+		<exec dir="${instance.dir}" executable="${php.bin}">
+			<arg line="-f install.php --
+				--license_agreement_accepted yes
+				--locale de_DE
+				--timezone 'Europe/Berlin'
+				--default_currency EUR
+				--db_host '${mysql.socket}'
+				--db_name ${mysql.database}
+				--db_user ${mysql.username}
+				--db_pass ${mysql.password}
+				--url '${instance.url}'
+				--secure_base_url '${instance.url}'
+				--use_rewrites yes
+				--skip_url_validation no
+				--use_secure no
+				--use_secure_admin no
+				--admin_lastname Owner
+				--admin_firstname Store
+				--admin_email 'admin@tdintern.de'
+				--admin_username admin
+				--admin_password eraZor00
+			"/>
+		</exec>
+		<echo message="Finalize instance for development mode..." />
+		<exec executable="${mysql.bin}">
+			<arg line="-u${mysql.username}"/>
+			<arg line="-p${mysql.password}"/>
+			<arg line="-e'USE ${mysql.database};
+				CREATE TABLE IF NOT EXISTS core_cache_option (value tinyint(3) DEFAULT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+				UPDATE core_cache_option SET value = 0;
+				INSERT INTO core_config_data (scope, scope_id, path, value) VALUES
+					(&quot;default&quot;, 0, &quot;dev/log/active&quot;, &quot;1&quot;),
+					(&quot;default&quot;, 0, &quot;dev/log/file&quot;, &quot;system.log&quot;),
+					(&quot;default&quot;, 0, &quot;dev/log/exception_file&quot;, &quot;exception.log&quot;),
+					(&quot;default&quot;, 0, &quot;cataloginventory/options/show_out_of_stock&quot;, &quot;1&quot;),
+					(&quot;default&quot;, 0, &quot;advanced/modules_disable_output/Mage_AdminNotification&quot;, &quot;1&quot;)'"/>
+		</exec>
+		<delete file="${instance.dir}/app/etc/use_cache.ser" />
+		<exec executable="/bin/ln" >
+			<arg value="-s"/>
+			<arg value="${instance.dir}"/>
+			<arg value="${basedir}/instance-src"/>
+		</exec>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Check if Magento Sample Data Package has been downloaded yet  	 	  -->
+	<!-- ==================================================================== -->
+	<target name="check-magento-sample-data-exists">
+	    <available file="${instance.tmp.dir}/magento-${magento.type}-sample-data-${magento.sample-data.version}.tar.gz" property="magento-sample-data.present"/>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Check if Magento Source Package has been downloaded yet  		 	  -->
+	<!-- ==================================================================== -->
+	<target name="check-magento-exists">
+	    <available file="${instance.tmp.dir}/magento-${magento.type}-${magento.version}.tar.gz" property="magento-src.present"/>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Get Magento Sample Data Package by given version number  		 	  -->
+	<!-- ==================================================================== -->
+	<target name="get-magento-sample-data" depends="check-magento-sample-data-exists" unless="magento-sample-data.present">
+		<echo message="Downloading magento ${magento.type} sample data v${magento.sample-data.version}..."/>
+		<get src="${instance.src}/magento-${magento.type}-sample-data-${magento.sample-data.version}.tar.gz" dest="${instance.tmp.dir}/magento-${magento.type}-sample-data-${magento.sample-data.version}.tar.gz"/>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Get Magento Source Package by given version number		  		 	  -->
+	<!-- ==================================================================== -->
+	<target name="get-magento-src" depends="check-magento-exists" unless="magento-src.present">
+		<echo message="Downloading magento v${magento.version}..."/>
+		<mkdir dir="${instance.tmp.dir}" />
+		<get src="${instance.src}/magento-${magento.type}-${magento.version}.tar.gz" dest="${instance.tmp.dir}/magento-${magento.type}-${magento.version}.tar.gz"/>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- PHP 5.3 Compatibility Patch		  		 	  					  -->
+	<!-- ==================================================================== -->
+	<target name="patch-php53-compatibility" >
+		<echo message="Patching magento for PHP 5.3 compatibility..."/>
+		<exec executable="${bin.dir}/perl" >
+			<arg line="-p -i -e 's/error_reporting\(E_ALL.*\)/error_reporting\(E_ALL \&amp; \~E_DEPRECATED \&amp; \~E_NOTICE\)/g' ${instance.dir}/downloader/Maged/Pear.php"/>
+		</exec>
+		<exec executable="${bin.dir}/perl" >
+			<arg line="-p -i -e 's/error_reporting\(E_ALL.*\)/error_reporting\(E_ALL \&amp; \~E_DEPRECATED \&amp; \~E_NOTICE\)/g' ${instance.dir}/index.php"/>
+		</exec>
+		<exec executable="${bin.dir}/perl" >
+			<arg line="-p -i -e 's/error_reporting\(E_ALL.*\)/error_reporting\(E_ALL \&amp; \~E_DEPRECATED \&amp; \~E_NOTICE\)/g' ${instance.dir}/lib/Varien/Pear.php"/>
+		</exec>
+		<exec executable="${bin.dir}/perl" >
+			<arg line="-p -i -e 's/error_reporting\(E_ALL.*\)/error_reporting\(E_ALL \&amp; \~E_DEPRECATED \&amp; \~E_NOTICE\)/g' ${instance.dir}/app/Mage.php"/>
+		</exec>
+		<exec executable="${bin.dir}/perl" >
+			<arg line="-p -i -e 's/public function __toString/function __toString\(\) \{return \$this->__invoke\(func_get_arg\(0\), func_get_arg\(1\)\)\;}public function __invoke/g' ${instance.dir}/lib/Varien/Object.php"/>
+		</exec>
+	</target>
+        <!-- ==================================================================== -->
+    <!-- Upload current release version to PEAR Channel		  		 	  	  -->
+    <!-- ==================================================================== -->
+    <target name="upload-release" >
+        <echo message="Releasing ${namespace}_${module}-${release.version}.tgz on ${pear.channel}..."/>
+        <exec executable="${bin.dir}/curl" outputproperty="exec.response">
+            <arg line='-d "login=Submit&amp;password=${pear.password}&amp;user=${pear.username}" --cookie-jar /tmp/cookieCurl -s ${pear.channel}/admin.php' />
+        </exec>
+        <exec executable="${bin.dir}/curl" outputproperty="exec.response">
+            <arg line='-F release=@"${php-target.dir}/${unique.name}/${namespace}_${module}-${release.version}.tgz" -F submitted=1 -F f=0 -F filename="${php-target.dir}/${unique.name}/${namespace}_${module}-${release.version}.tgz" -F createpackage=1 -F createuser=1 --cookie /tmp/cookieCurl ${pear.channel}/admin.php'></arg>
+        </exec>
+    </target>
+    <!-- ==================================================================== -->
+    <!-- Release new patch version      	  		 	  					  -->
+    <!-- ==================================================================== -->
+    <target name="version-release" >
+        <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+        <taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask"/>
+        <echo message="Preparing new version release" />
+        <exec executable="${bin.dir}/svn" dir="${basedir}">
+            <arg line="up" />
+        </exec>
+        <exec executable="${bin.dir}/awk" output="${basedir}/build.default.properties">
+            <arg line="'BEGIN{FS=&quot;.&quot;} {if ($1 ~ /release/ &amp;&amp; $2 ~ /version/) print $1 &quot;.&quot; $2 &quot;.&quot; $3 &quot;.&quot; ++$4;else print}' ${basedir}/build.default.properties" />
+        </exec>
+        <property file="${basedir}/build.default.properties" prefix="new"/>
+        <var name="release.version" unset="true"/>
+        <propertycopy name="release.version" from="new.release.version" />
+        <input message="Please enter changelog for release version ${release.version}:" addproperty="release.changelog" defaultvalue="- New release version"/>
+        <tstamp>
+		 	<format property="actual.date" pattern="yyyy-MM-dd" locale="en" />
+		 	<format property="actual.time" pattern="hh:mm:ss" locale="en" />
+		</tstamp>
+        <xmltask source="${pear.dir}/package2.xml" dest="${pear.dir}/package2.xml">
+            <replace path="/:package/:notes/text()" withXml="${release.changelog}"/>
+            <insert path="/*[local-name()='package']/*[local-name()='changelog']/*[local-name()='release'][1]" position="before">
+              <![CDATA[
+                <release>
+            <version>
+                <release>${release.version}</release>
+                <api>${api.version}</api>
+            </version>
+            <stability>
+                <release>${release.stability}</release>
+                <api>${api.stability}</api>
+            </stability>
+            <date>${actual.date}</date>
+            <license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
+            <notes>
+                ${release.changelog}
+            </notes>
+        </release>]]>
+            </insert>
+        </xmltask>
+        <exec executable="${bin.dir}/svn" dir="${basedir}">
+            <arg line="commit -m '${release.changelog}'" />
+        </exec>
+        <exec executable="${bin.dir}/svn" outputproperty="svn.info">
+            <arg value="info" />
+        </exec>
+        <propertyregex property="svn.repository.url"
+                       input="${svn.info}"
+                       regexp=".*Root:\s(http.*)\n"
+                       select="\1"
+                       casesensitive="false" />
+        <exec executable="${bin.dir}/svn" dir="${basedir}">
+            <arg line="cp . &quot;${svn.repository.url}/${namespace}_${module}/tags/release-${release.version}&quot; -m &quot;${release.changelog}&quot;" />
+        </exec>
+        <antcall target="create-package"/>
+        <antcall target="upload-release"/>
+        <echo message="${namespace}_${module} Version ${release.version} released." />
+    </target>
+</project>
